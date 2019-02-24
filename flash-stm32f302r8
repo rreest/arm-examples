@@ -1,0 +1,10 @@
+#!/bin/bash
+
+HOME=~
+HEX_DIR=$HOME'/Projects/arm-examples/build/arm-examples.hex'
+
+echo 'Flashing via telnet'
+{ echo "reset halt"; echo "flash write_image erase ${HEX_DIR}"; echo "reset run"; echo "exit"; sleep 2; } | telnet localhost 4444
+echo '...flashed!'
+
+exit 0
