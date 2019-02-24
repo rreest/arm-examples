@@ -8,8 +8,11 @@ add_definitions(-DSTM32F302x8)
 # Link necessary MCU support files to compiler
 include_directories(${CMAKE_SOURCE_DIR}/library)
 
-# Should compile all user .c code
-file(GLOB_RECURSE PROGRAM_SOURCES "code/*.c")
+# Compile .c code
+# toggle between "examples/<folder>/" to switch between which example to build
+file(GLOB_RECURSE PROGRAM_SOURCES "examples/spi-master/*.c")
+# add custom system.c file from library for clock configuration
+file(GLOB_RECURSE PROGRAM_SOURCES ${PROGRAM_SOURCES} "library/system.c")
 # We need to add STM startup code to the final .hex and unless we want to make that ourselves we need to add this file
 file(GLOB_RECURSE STARTUP_SFILE "library/startup_stm32f302x8.s")
 

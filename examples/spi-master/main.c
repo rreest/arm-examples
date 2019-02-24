@@ -48,7 +48,7 @@ int main()
 
 	/* Enable and configure SPI2
 	 *
-	 * NOTE: Anything that is commented out in the code below is a setting
+	 * NOTE: Anything that is commented out in the spi-master below is a setting
 	 * that is already set to that value by default.
 	 * It may need to be changed in a specific configuration,
 	 * or reset by hand to make sure it has the correct value,
