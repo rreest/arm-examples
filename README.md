@@ -27,6 +27,7 @@ masin teeb ise transferi.
 Clionis - mine preferences->build-exec->CMake ja pane profiilile 
 "CMake options"-isse -D CMAKE_CXX_COMPILER=<> ja -D CMAKE_C_COMPILER=<>
 
+## Arendus
 1. STMF32 Cube download (leidsin mingi lambise githubi)
 
 2. Copyda vajalikud failid projekti ümber. Need on nüüd toetusfailid mingi
