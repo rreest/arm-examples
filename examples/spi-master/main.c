@@ -93,14 +93,17 @@ int main()
 	// PC12 (MOSI)
 	GPIOC->MODER |= GPIO_MODER_MODER12_1;
 	GPIOC->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR12;
-	//GPIOC->OTYPER &= ~(GPIO_OTYPER_OT_12);
-	//GPIOC->PUPDR &= ~(GPIO_PUPDR_PUPDR12);
+	//GPIOC->OTYPER |= GPIO_OTYPER_OT_12;
+	GPIOC->PUPDR |= GPIO_PUPDR_PUPDR12_1;
 	GPIOC->AFR[1] |= GPIO_AF6 << GPIO_AFRH_AFRH4_Pos;
 
 	// SPI configuration
 	RCC->APB1ENR |= RCC_APB1ENR_SPI3EN; // Enable SPI on APB bus
-	//SPI3->CR1 &= ~SPI_CR1_CPOL; // Reset CPOL
-	//SPI3->CR1 &= ~SPI_CR1_CPHA; // Reset CPHA
+	SPI3->CR2 = 0;
+	SPI3->CR1 = 0;
+
+	//SPI3->CR1 |= SPI_CR1_CPOL; // Reset CPOL
+	//SPI3->CR1 |= SPI_CR1_CPHA; // Reset CPHA
 	//SPI3->CR1 &= ~SPI_CR1_BIDIMODE; // Set as uni-directional (2 line)
 	//SPI3->CR1 &= ~SPI_CR1_RXONLY; // Set as full-duplex (4 line)
 	//SPI3->CR1 &= ~SPI_CR1_LSBFIRST; // Reset LSB eg. set as MSB
@@ -115,13 +118,23 @@ int main()
 	int i;
 	for (;;) {
 		SPI_Enable();
-		SPI_Send(0xfe);
+		SPI_Send(0xaa00);
 		SPI_Disable();
 
 		Blink_LED();
 		for (i = 0; i < 1000000 / 2; i++) {
 			asm("nop");
 		}
+
+		SPI_Enable();
+		SPI_Send(0x00aa);
+		SPI_Disable();
+
+		Blink_LED();
+		for (i = 0; i < 1000000 / 2; i++) {
+			asm("nop");
+		}
+
 	}
 
 	return 0;

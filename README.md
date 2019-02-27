@@ -13,6 +13,8 @@ suhteliselt vähe ressursse internetis. Kõik teevad teekidega vms.
 
 - Port F pinid ei tööta by default. Miks? Ei tea! Kusagil kirjas pole.
 
+- SPI puhul peavad STM32 ja teine osapool olema GND-iga ühendatud. Muidu on suhtlusprobleemid.
+
 - SPI3 ja muidu SPI2 töötavad väga kergelt, aga GPIO conf on vaja õigeks saada.
 
 - SPI transfer töötab iseenesest - tuleb lihtsalt DR registrisse vajalik byte kirjutada ja

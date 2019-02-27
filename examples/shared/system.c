@@ -1,5 +1,8 @@
 #include <stm32f3xx.h>
 
+uint32_t SystemCoreClock = 52000000;          /*!< System Clock Frequency (Core Clock) */
+
+
 void SystemInit(void)
 {
 	/* Reset the RCC clock configuration to the default reset state ------------*/
@@ -49,7 +52,7 @@ void SystemInit(void)
 	 * PPLMUL = 13x		Multiply HSI (8/2 = 4MHz) by 13 to get 52MHz
 	 * PPRE1 = HCLK/2	Divide APB1 clock to get it to 26MHz (Max 72/2 = 36)
 	 */
-	RCC->CFGR |= RCC_CFGR_PLLMUL2 | RCC_CFGR_PPRE1_DIV2;
+	RCC->CFGR |= RCC_CFGR_PLLMUL13 | RCC_CFGR_PPRE1_DIV2;
 
 	// Additional possible configurations
 	//	/* Set HCLK (AHB1) prescaler (DIV1) */
